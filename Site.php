@@ -173,7 +173,9 @@ class Site
 
     public function createDatabaseAndUser()
     {
+        var_dump("start : createDatabaseAndUser ->create DB");
         Database::createDB($this->getNameDB());
+        var_dump("start : createDatabaseAndUser ->create USER");
         Database::createUser($this->getUserDB(),$this->getPasswordUser(),$this->getNameDB());
     }
 }

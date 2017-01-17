@@ -7,7 +7,10 @@
  */
 
 include "Site.php";
+include "Database.php";
 
+
+echo "<pre>";
 try
 {
     if(!isset($_POST['nom']) or $_POST['nom'] == null)
@@ -62,13 +65,14 @@ try
     shell_exec("wp core download --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
 
     $site->createDatabaseAndUser();
-    //var_dump("wp core config --dbname=".$site->getNameDB()." --dbuser=".$site->getNameUser()." --dbpass=".$site->getPasswordUser()." --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
+
+    $string = var_dump("wp core config --dbname=".$site->getNameDB()." --dbuser=".$site->getNameUser()." --dbpass=".$site->getPasswordUser()." --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
+    var_dump($string);
     shell_exec("wp core config --dbname=".$site->getNameDB()." --dbuser=".$site->getNameUser()." --dbpass=".$site->getPasswordUser()." --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
     $debug3 = shell_exec("wp core install --url=192.168.33.10 --title=\"".$site->getNameSite()."\" --admin_user=".$site->getNameUser()." --admin_password=".$site->getPwdDB()." --admin_email=\"".$site->getMail()."\" --skip-email");
 
 
 
-    echo "<pre>";
     var_dump($site);
     var_dump($debug3);
 }
