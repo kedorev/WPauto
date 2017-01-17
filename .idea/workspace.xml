@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0ddd1f6-e22b-40b0-987d-6007a00f8ccb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Class/Database.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Class/Plugin.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Class/Theme.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/debug.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/include.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Database.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Password.php" afterPath="$PROJECT_DIR$/Class/Password.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/Site.php" afterPath="$PROJECT_DIR$/Class/Site.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/create.php" afterPath="$PROJECT_DIR$/create.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-    </list>
+    <list default="true" id="b0ddd1f6-e22b-40b0-987d-6007a00f8ccb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -286,12 +274,20 @@
       <updated>1484555043028</updated>
       <workItem from="1484555044937" duration="13449000" />
       <workItem from="1484640061821" duration="20406000" />
-      <workItem from="1484669126267" duration="1462000" />
+      <workItem from="1484669126267" duration="1576000" />
     </task>
+    <task id="LOCAL-00001" summary="Update of main use .&#10;Add Class and autoloader.&#10;Can remove plugin.">
+      <created>1484670821857</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1484670821857</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35317000" />
+    <option name="totallyTimeSpent" value="35431000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="974" extended-state="6" />
@@ -321,6 +317,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update of main use .&#10;Add Class and autoloader.&#10;Can remove plugin." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update of main use .&#10;Add Class and autoloader.&#10;Can remove plugin." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
