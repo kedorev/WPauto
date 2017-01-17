@@ -6,14 +6,15 @@
  * Time: 14:09
  */
 
-include "Site.php";
-include "Database.php";
-include "Password.php";
-
+include "include.php";
 
 echo "<pre>";
 try
 {
+
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
+
     if(!isset($_POST['nom']) or $_POST['nom'] == null)
     {
         throw new Exception("Nom du site non valide");
@@ -35,6 +36,8 @@ try
         throw new Exception("Email invalide ");
     }
 
+    //var_dump($_POST['deleteDefaultPlugin']);
+
 
     $site = new Site();
     $site->setUserDB(htmlentities($_POST['bdd_user']));
@@ -46,13 +49,14 @@ try
     $site->setMail(htmlentities($_POST['email']));
     $site->setPwdDB(htmlentities($_POST['bdd_pwd']));
 
-
+    $site->addDefaultPlugin();
 
     if(file_exists("/usr/local/bin/wp") == null and file_exists("wp-cli.phar") == null)
     {
         $site->importWP_cli();
     }
 
+    //var_dump($site->getPath());
     if(!file_exists($site->getPath()))
     {
         mkdir($site->getPath());
@@ -62,20 +66,26 @@ try
         throw new Exception("Votre site web existe deja");
     }
 
-
-    shell_exec("wp core download --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
+    chdir($site->getPath());
+    shell_exec("wp core download --locale=".$site->getLocale());
 
     $site->createDatabaseAndUser();
 
-    $string = var_dump("wp core config --dbname=".$site->getNameDB()." --dbuser=".$site->getNameUser()." --dbpass=".$site->getPasswordUser()." --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
-    var_dump($string);
-    shell_exec("wp core config --dbname=".$site->getNameDB()." --dbuser=".$site->getNameUser()." --dbpass=".$site->getPasswordUser()." --path=\"".$site->getPath()."\" --locale=".$site->getLocale());
-    $debug3 = shell_exec("wp core install --url=192.168.33.10 --title=\"".$site->getNameSite()."\" --admin_user=".$site->getNameUser()." --admin_password=".$site->getPwdDB()." --admin_email=\"".$site->getMail()."\" --skip-email");
+    $debug1 = shell_exec("wp core config --dbname=".$site->getNameDB()." --dbuser=".$site->getNameUser()." --dbpass=".$site->getPasswordUser()->toString()." --dbprefix=\"WP_\" --locale=".$site->getLocale() );
+    //var_dump($string);
+    $debug3 = shell_exec("wp core install --path=\"".$site->getPath()."\" --url=192.168.33.10 --title=\"".$site->getNameSite()."\" --admin_user=".$site->getNameUser()." --admin_password=".$site->getPwdDB()->toString()." --admin_email=\"".$site->getMail()."\" --skip-email");
 
 
 
-    var_dump($site);
-    var_dump($debug3);
+
+    if(isset($_POST['deleteDefaultPlugin']))
+    {
+        $site->getPluginByName("hello dolly")->deletePlugin();
+        $site->getPluginByName("akismet")->deletePlugin();
+    }
+
+
+    Echo "site créé avec succès";
 }
 catch (Exception $e)
 {

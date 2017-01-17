@@ -10,7 +10,8 @@ class Password
 {
     const nbCarMin = 4;
     const nbCarMax = 16;
-    const haveUpperLowerCase = true;
+    const haveUpperLowerCase = false;
+    const haveSpecialChar = false;
 
     private $password;
 
@@ -46,10 +47,21 @@ class Password
     {
         if(strlen($pwd) > Password::nbCarMin and strlen($pwd) < Password::nbCarMax)
         {
-            if(Password::haveUpperLowerCase)
+            if(Password::haveUpperLowerCase == true)
             {
-                if(preg_match('/[A-Z]/', $pwd)){
-                    return true;
+                if(preg_match('/[A-Z]/', $pwd))
+                {
+                    if(Password::haveSpecialChar == true) {
+
+                        if (preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $pwd)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    else {
+                        return true;
+                    }
                 }
                 else
                 {
@@ -64,5 +76,10 @@ class Password
         {
             return false;
         }
+    }
+
+    public function toString()
+    {
+        return $this->getPassword();
     }
 }

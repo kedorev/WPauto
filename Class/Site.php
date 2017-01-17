@@ -17,13 +17,19 @@ class Site
     private $pwdDB;
     private $nameDB;
     private $mail;
+    private $aTheme;
+    private $aPlugin;
 
     /**
      * site constructor.
      * @param $nameSite
      */
     public function __construct()
-    {}
+    {
+        $this->aPlugin = array();
+        $this->aTheme = array();
+
+    }
 
     /**
      * @return mixed
@@ -120,10 +126,7 @@ class Site
      */
     public function setUserDB($userDB)
     {
-        if($userDB != "root")
-        {
-            $this->userDB = $userDB;
-        }
+        $this->userDB = $userDB;
     }
 
     /**
@@ -139,7 +142,7 @@ class Site
      */
     public function setPwdDB($pwdDB)
     {
-        $this->pwdDB = $pwdDB;
+        $this->pwdDB = new Password($pwdDB);
     }
 
     /**
@@ -159,6 +162,36 @@ class Site
     }
 
 
+    public function addPlugin(Plugin $plugin)
+    {
+        array_push($this->aPlugin, $plugin);
+    }
+
+
+    public function getPluginByName($name)
+    {
+        //var_dump($this);
+        $nbElement = sizeof($this->aPlugin);
+        //var_dump($nbElement);
+        $iNav = 0;
+        while($iNav < $nbElement and $name != $this->aPlugin[$iNav]->getName())
+        {
+            //var_dump($this->aPlugin[$iNav]->getName());
+            $iNav++;
+        }
+        if($iNav == $nbElement)
+        {
+            return false;
+        }
+        else
+        {
+            return $this->aPlugin[$iNav];
+        }
+    }
+
+
+
+
     public function getPath()
     {
         return "/var/www/html/".$this->getNameSite();
@@ -174,9 +207,24 @@ class Site
 
     public function createDatabaseAndUser()
     {
-        var_dump("start : createDatabaseAndUser ->create DB");
+        //var_dump("start : createDatabaseAndUser ->create DB");
         Database::createDB($this->getNameDB());
-        var_dump("start : createDatabaseAndUser ->create USER");
+        //("start : createDatabaseAndUser ->create USER");
         Database::createUser($this->getUserDB(),$this->getPasswordUser(),$this->getNameDB());
+    }
+
+
+    public function addDefaultPlugin()
+    {
+
+        $plugin = new Plugin();
+        $plugin->setName("hello dolly");
+        $plugin->setSludge("hello");
+        $this->addPlugin($plugin);
+
+        $plugin = new Plugin();
+        $plugin->setName("akismet");
+        $plugin->setSludge("akismet");
+        $this->addPlugin($plugin);
     }
 }
