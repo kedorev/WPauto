@@ -8,6 +8,7 @@
 
 include "Site.php";
 include "Database.php";
+include "Password.php";
 
 
 echo "<pre>";
@@ -17,7 +18,7 @@ try
     {
         throw new Exception("Nom du site non valide");
     }
-    if(!isset($_POST['bdd_user']) or $_POST['bdd_user'] == null)
+    if(!isset($_POST['bdd_user']) or $_POST['bdd_user'] == null or $_POST['bdd_user'] == "root")
     {
         throw new Exception("Nom utilisateur invalide");
     }

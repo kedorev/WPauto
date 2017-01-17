@@ -70,7 +70,8 @@ class Site
      */
     public function setPasswordUser($passwordUser)
     {
-        $this->passwordUser = $passwordUser;
+
+        $this->passwordUser = new Password($passwordUser);
     }
 
     /**
