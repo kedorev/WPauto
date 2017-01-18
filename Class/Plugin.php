@@ -55,4 +55,18 @@ class Plugin
         return shell_exec("wp plugin uninstall --deactivate ".$this->getSludge());
     }
 
+
+    public static function search($name)
+    {
+        return shell_exec("wp plugin search ".$name);
+    }
+
+    public static function install($name)
+    {
+        $plugin = new Plugin();
+        if(shell_exec("wp plugin is-installed ".$name))
+        {
+            $data = shell_exec("");
+        }
+    }
 }

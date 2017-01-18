@@ -227,4 +227,10 @@ class Site
         $plugin->setSludge("akismet");
         $this->addPlugin($plugin);
     }
+
+    public function createDefaultPlgin()
+    {
+
+    }
+
 }
