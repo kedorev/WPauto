@@ -7,7 +7,7 @@
  * http://codex.wordpress.org/Template_Tags to understand
  * the tags used in it.
  *
- * This can be overridden in child themes with loop-page.php.
+ * This can be overridden in child themes with pageContent.php.
  *
  * @package Skeleton WordPress Theme
  * @subpackage skeleton

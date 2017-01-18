@@ -84,6 +84,7 @@ try
         $site->getPluginByName("akismet")->deletePlugin();
     }
 
+    //Plugin::install();
 
     Echo "site créé avec succès";
 }
